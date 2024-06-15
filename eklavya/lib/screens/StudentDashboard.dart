@@ -1,6 +1,8 @@
+import 'package:eklavya/screens/CoursesModules.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:lottie/lottie.dart';
 
 class StudentDashboard extends StatelessWidget {
   @override
@@ -87,14 +89,29 @@ class HomeTab extends StatelessWidget {
                   isCompleted: false, // Example completion status,
                   screen: StudentDashboard(),
                 ),
-                CourseCompletionCard(
-                  imageUrl:
-                      'https://iimtu.edu.in/blog/wp-content/uploads/2023/10/Chemistry-1.jpg', // Replace with actual image URL
-                  courseTitle: 'LAW',
-                  instructorName: 'Mr. Ashutosh Kumar',
-                  isCompleted: false,
-                  screen: StudentDashboard(), // Example completion status
-                )
+              CourseCompletionCard(
+                imageUrl: 'https://iimtu.edu.in/blog/wp-content/uploads/2023/10/Chemistry-1.jpg', // Replace with actual image URL
+                courseTitle: 'LAW',
+                instructorName: 'Mr. Ashutosh Kumar',
+                isCompleted: false,
+                screen: StudentDashboard(), // Example completion status
+              ),
+              CourseCompletionCard(
+                imageUrl: 'https://images.shiksha.com/mediadata/images/articles/1664461243phpY2xZ72.jpeg', // Replace with actual image URL
+                courseTitle: 'LAW',
+                instructorName: 'Mr. Ashutosh Kumar',
+                isCompleted: false, // Example completion status,
+                screen: StudentDashboard(),
+              ),
+              CourseCompletionCard(
+                imageUrl: 'https://iimtu.edu.in/blog/wp-content/uploads/2023/10/Chemistry-1.jpg', // Replace with actual image URL
+                courseTitle: 'LAW',
+                instructorName: 'Mr. Ashutosh Kumar',
+                isCompleted: false,
+                screen: StudentDashboard(), // Example completion status
+              )
+
+
               ],
             ),
           ),
@@ -590,10 +607,11 @@ class TestContainer extends StatelessWidget {
         child: Container(
           width: 320,
           padding: EdgeInsets.all(16),
+          height: 120,
           margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           decoration: BoxDecoration(
             color: Color.fromARGB(255, 242, 239, 243),
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(25),
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withOpacity(0.2),
@@ -603,24 +621,35 @@ class TestContainer extends StatelessWidget {
               ),
             ],
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Text(
-                testName,
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-              ),
-              SizedBox(height: 8),
-              Text(
-                testDate,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black,
+          child: Row(
+
+            children: [
+              Container(height:95,width: 95,child: Lottie.asset("images/exam.json")),
+
+              Padding(
+                padding: const EdgeInsets.only(left: 30),
+                child: Column(
+                  
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Text(
+                      testName,
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    Text(
+                      testDate,
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],

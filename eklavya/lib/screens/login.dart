@@ -223,16 +223,6 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
             },
           ),
           TextFormField(
-            controller: _languagesController,
-            decoration: InputDecoration(labelText: 'Languages known'),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter the languages you know';
-              }
-              return null;
-            },
-          ),
-          TextFormField(
             controller: _preferableLanguageController,
             decoration: InputDecoration(labelText: 'Preferred language'),
             validator: (value) {

@@ -1,8 +1,4 @@
-import 'package:eklavya/screens/StudentDashboard.dart';
-import 'package:eklavya/screens/dashboard.dart';
-import 'package:eklavya/screens/feedbackForm.dart';
 import 'package:eklavya/screens/login.dart';
-import 'package:eklavya/screens/surveyForm.dart';
 import 'package:flutter/material.dart';
 
 void main() {
