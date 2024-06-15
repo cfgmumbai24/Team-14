@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-
 class StudentDashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -44,55 +43,65 @@ class HomeTab extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _buildStatCard(context, '0','ENROLLED', const Color.fromRGBO(156, 39, 176, 1), CoursesEnrolledScreen()),
-              _buildStatCard(context, '0', 'COMPLETED', const  Color.fromARGB(255, 50, 169, 102), CoursesCompletedScreen()),
+              _buildStatCard(
+                  context,
+                  '0',
+                  'ENROLLED',
+                  const Color.fromRGBO(156, 39, 176, 1),
+                  CoursesEnrolledScreen()),
+              _buildStatCard(
+                  context,
+                  '0',
+                  'COMPLETED',
+                  const Color.fromARGB(255, 50, 169, 102),
+                  CoursesCompletedScreen()),
             ],
           ),
-         
           SizedBox(height: 32),
           _buildSectionTitle('Your Courses'),
-           SingleChildScrollView(
+          SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child:Row(
+            child: Row(
               children: [
                 CourseCompletionCard(
-                imageUrl: 'https://images.shiksha.com/mediadata/images/articles/1664461243phpY2xZ72.jpeg', // Replace with actual image URL
-                courseTitle: 'LAW',
-                instructorName: 'Mr. Ashutosh Kumar',
-                isCompleted: false,
-                screen: StudentDashboard(), // Example completion status
-              ),
-              CourseCompletionCard(
-                imageUrl: 'https://iimtu.edu.in/blog/wp-content/uploads/2023/10/Chemistry-1.jpg', // Replace with actual image URL
-                courseTitle: 'LAW',
-                instructorName: 'Mr. Ashutosh Kumar',
-                isCompleted: false,
-                screen: StudentDashboard(), // Example completion status
-              ),
-              CourseCompletionCard(
-                imageUrl: 'https://images.shiksha.com/mediadata/images/articles/1664461243phpY2xZ72.jpeg', // Replace with actual image URL
-                courseTitle: 'LAW',
-                instructorName: 'Mr. Ashutosh Kumar',
-                isCompleted: false, // Example completion status,
-                screen: StudentDashboard(),
-              ),
-              CourseCompletionCard(
-                imageUrl: 'https://iimtu.edu.in/blog/wp-content/uploads/2023/10/Chemistry-1.jpg', // Replace with actual image URL
-                courseTitle: 'LAW',
-                instructorName: 'Mr. Ashutosh Kumar',
-                isCompleted: false,
-                screen: StudentDashboard(), // Example completion status
-              )
-
+                  imageUrl:
+                      'https://images.shiksha.com/mediadata/images/articles/1664461243phpY2xZ72.jpeg', // Replace with actual image URL
+                  courseTitle: 'LAW',
+                  instructorName: 'Mr. Ashutosh Kumar',
+                  isCompleted: false,
+                  screen: StudentDashboard(), // Example completion status
+                ),
+                CourseCompletionCard(
+                  imageUrl:
+                      'https://iimtu.edu.in/blog/wp-content/uploads/2023/10/Chemistry-1.jpg', // Replace with actual image URL
+                  courseTitle: 'LAW',
+                  instructorName: 'Mr. Ashutosh Kumar',
+                  isCompleted: false,
+                  screen: StudentDashboard(), // Example completion status
+                ),
+                CourseCompletionCard(
+                  imageUrl:
+                      'https://images.shiksha.com/mediadata/images/articles/1664461243phpY2xZ72.jpeg', // Replace with actual image URL
+                  courseTitle: 'LAW',
+                  instructorName: 'Mr. Ashutosh Kumar',
+                  isCompleted: false, // Example completion status,
+                  screen: StudentDashboard(),
+                ),
+                CourseCompletionCard(
+                  imageUrl:
+                      'https://iimtu.edu.in/blog/wp-content/uploads/2023/10/Chemistry-1.jpg', // Replace with actual image URL
+                  courseTitle: 'LAW',
+                  instructorName: 'Mr. Ashutosh Kumar',
+                  isCompleted: false,
+                  screen: StudentDashboard(), // Example completion status
+                )
               ],
             ),
-           
-
           ),
           SizedBox(height: 16),
-           _buildSectionTitle('Upcoming Exams'),
-           SizedBox(height: 15),
-           TestContainer(testName: 'National Exam', testDate: '19/08/04'),
+          _buildSectionTitle('Upcoming Exams'),
+          SizedBox(height: 15),
+          TestContainer(testName: 'National Exam', testDate: '19/08/04'),
           Spacer(),
           FloatingActionButton(
             onPressed: () {},
@@ -103,7 +112,8 @@ class HomeTab extends StatelessWidget {
     );
   }
 
-  Widget _buildStatCard(BuildContext context, String count, String label, Color color, Widget targetScreen) {
+  Widget _buildStatCard(BuildContext context, String count, String label,
+      Color color, Widget targetScreen) {
     return Container(
       child: Expanded(
         child: GestureDetector(
@@ -162,7 +172,6 @@ class HomeTab extends StatelessWidget {
 
   Widget _buildSlidableCard() {
     return Slidable(
-     
       startActionPane: ActionPane(
         motion: const ScrollMotion(),
         dismissible: DismissiblePane(onDismissed: () {}),
@@ -350,10 +359,6 @@ class CommunitiesSubscribedScreen extends StatelessWidget {
   }
 }
 
-
-
-
-
 class CourseCompletionCard extends StatelessWidget {
   final String imageUrl;
   final String courseTitle;
@@ -433,15 +438,13 @@ class CourseCompletionCard extends StatelessWidget {
   }
 }
 
-
-
-
 class AttendanceCard extends StatefulWidget {
   @override
   _AttendanceCardState createState() => _AttendanceCardState();
 }
 
-class _AttendanceCardState extends State<AttendanceCard> with SingleTickerProviderStateMixin {
+class _AttendanceCardState extends State<AttendanceCard>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
 
@@ -568,6 +571,7 @@ class _AttendanceCardState extends State<AttendanceCard> with SingleTickerProvid
     );
   }
 }
+
 class TestContainer extends StatelessWidget {
   final String testName;
   final String testDate;
@@ -581,11 +585,10 @@ class TestContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-
       child: InkWell(
         splashColor: Colors.black,
         child: Container(
-          width:320,
+          width: 320,
           padding: EdgeInsets.all(16),
           margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           decoration: BoxDecoration(

@@ -1,5 +1,8 @@
 import 'package:eklavya/screens/StudentDashboard.dart';
 import 'package:eklavya/screens/dashboard.dart';
+import 'package:eklavya/screens/feedbackForm.dart';
+import 'package:eklavya/screens/login.dart';
+import 'package:eklavya/screens/surveyForm.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: MyHomePage(),
+      home: const LoginSignupPage(),
     );
   }
 }
