@@ -15,8 +15,8 @@ class StudentDashboard extends StatelessWidget {
           bottom: TabBar(
             tabs: [
               Tab(text: 'Home'),
-              Tab(text: 'Courses'),
-              Tab(text: 'Communities'),
+              Tab(text: 'My Mentor'),
+              Tab(text: 'Job Posting'),
               Tab(text: 'My Favourites'),
             ],
           ),
@@ -71,7 +71,9 @@ class HomeTab extends StatelessWidget {
                   courseTitle: 'LAW',
                   instructorName: 'Mr. Ashutosh Kumar',
                   isCompleted: false,
-                  screen: StudentDashboard(), // Example completion status
+                  screen: CourseModulesScreen(
+                    courseId: "jhasgdjhewgfue",
+                  ), // Example completion status
                 ),
                 CourseCompletionCard(
                   imageUrl:
@@ -89,29 +91,14 @@ class HomeTab extends StatelessWidget {
                   isCompleted: false, // Example completion status,
                   screen: StudentDashboard(),
                 ),
-              CourseCompletionCard(
-                imageUrl: 'https://iimtu.edu.in/blog/wp-content/uploads/2023/10/Chemistry-1.jpg', // Replace with actual image URL
-                courseTitle: 'LAW',
-                instructorName: 'Mr. Ashutosh Kumar',
-                isCompleted: false,
-                screen: StudentDashboard(), // Example completion status
-              ),
-              CourseCompletionCard(
-                imageUrl: 'https://images.shiksha.com/mediadata/images/articles/1664461243phpY2xZ72.jpeg', // Replace with actual image URL
-                courseTitle: 'LAW',
-                instructorName: 'Mr. Ashutosh Kumar',
-                isCompleted: false, // Example completion status,
-                screen: StudentDashboard(),
-              ),
-              CourseCompletionCard(
-                imageUrl: 'https://iimtu.edu.in/blog/wp-content/uploads/2023/10/Chemistry-1.jpg', // Replace with actual image URL
-                courseTitle: 'LAW',
-                instructorName: 'Mr. Ashutosh Kumar',
-                isCompleted: false,
-                screen: StudentDashboard(), // Example completion status
-              )
-
-
+                CourseCompletionCard(
+                  imageUrl:
+                      'https://iimtu.edu.in/blog/wp-content/uploads/2023/10/Chemistry-1.jpg', // Replace with actual image URL
+                  courseTitle: 'LAW',
+                  instructorName: 'Mr. Ashutosh Kumar',
+                  isCompleted: false,
+                  screen: StudentDashboard(), // Example completion status
+                )
               ],
             ),
           ),
@@ -120,10 +107,6 @@ class HomeTab extends StatelessWidget {
           SizedBox(height: 15),
           TestContainer(testName: 'National Exam', testDate: '19/08/04'),
           Spacer(),
-          FloatingActionButton(
-            onPressed: () {},
-            child: Icon(Icons.add),
-          ),
         ],
       ),
     );
@@ -245,14 +228,78 @@ void doNothing(BuildContext context) {}
 class CoursesTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text('Courses Tab'));
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Mentor Details'),
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Lottie animation at the top
+              Center(
+                child: Lottie.asset(
+                  'images/hi.json', // Ensure you have the 'hi' Lottie file in the assets directory
+                  height: 150,
+                ),
+              ),
+              SizedBox(height: 20),
+              // Mentor details
+              Text(
+                'Mentor Details:',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 10),
+              Text(
+                'Name: John Doe',
+                style: TextStyle(fontSize: 18),
+              ),
+              SizedBox(height: 5),
+              Text(
+                'Position: Senior Software Engineer',
+                style: TextStyle(fontSize: 18),
+              ),
+              SizedBox(height: 5),
+              Text(
+                'Email: john.doe@example.com',
+                style: TextStyle(fontSize: 18),
+              ),
+              SizedBox(height: 20),
+              // Contact via Phone Card
+              Card(
+                child: ListTile(
+                  leading: Icon(Icons.phone, color: Colors.green),
+                  title: Text('Contact via Phone'),
+                  onTap: () {
+                    // Add phone contact functionality here
+                  },
+                ),
+              ),
+              SizedBox(height: 10),
+              // Video Call Card
+              Card(
+                child: ListTile(
+                  leading: Icon(Icons.video_call, color: Colors.blue),
+                  title: Text('Video Call'),
+                  onTap: () {
+                    // Add video call functionality here
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
 
 class CommunitiesTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text('Communities Tab'));
+    return Center(child: Text('Communities'));
   }
 }
 
@@ -606,8 +653,8 @@ class TestContainer extends StatelessWidget {
         splashColor: Colors.black,
         child: Container(
           width: 320,
-          padding: EdgeInsets.all(16),
           height: 120,
+          padding: EdgeInsets.all(8),
           margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           decoration: BoxDecoration(
             color: Color.fromARGB(255, 242, 239, 243),
@@ -622,14 +669,14 @@ class TestContainer extends StatelessWidget {
             ],
           ),
           child: Row(
-
             children: [
-              Container(height:95,width: 95,child: Lottie.asset("images/exam.json")),
-
+              Container(
+                  height: 95,
+                  width: 95,
+                  child: Lottie.asset("images/exam.json")),
               Padding(
                 padding: const EdgeInsets.only(left: 30),
                 child: Column(
-                  
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
