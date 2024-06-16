@@ -1,9 +1,10 @@
 import 'package:eklavya/screens/CoursesModules.dart';
+import 'package:eklavya/screens/feedbackForm.dart';
+import 'package:eklavya/screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:lottie/lottie.dart';
-
 
 class StudentDashboard extends StatelessWidget {
   @override
@@ -16,8 +17,8 @@ class StudentDashboard extends StatelessWidget {
           bottom: TabBar(
             tabs: [
               Tab(text: 'Home'),
-              Tab(text: 'Courses'),
-              Tab(text: 'Communities'),
+              Tab(text: 'My Mentor'),
+              Tab(text: 'Job Posting'),
               Tab(text: 'My Favourites'),
             ],
           ),
@@ -46,66 +47,77 @@ class HomeTab extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _buildStatCard(context, '0','ENROLLED', const Color.fromRGBO(156, 39, 176, 1), CoursesEnrolledScreen()),
-              _buildStatCard(context, '0', 'COMPLETED', const  Color.fromARGB(255, 50, 169, 102), CoursesCompletedScreen()),
+              _buildStatCard(
+                  context,
+                  '0',
+                  'ENROLLED',
+                  const Color.fromRGBO(156, 39, 176, 1),
+                  CoursesEnrolledScreen()),
+              _buildStatCard(
+                  context,
+                  '0',
+                  'COMPLETED',
+                  const Color.fromARGB(255, 50, 169, 102),
+                  CoursesCompletedScreen()),
             ],
           ),
-         
           SizedBox(height: 32),
           _buildSectionTitle('Your Courses'),
-           SingleChildScrollView(
+          SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child:Row(
+            child: Row(
               children: [
                 CourseCompletionCard(
-                imageUrl: 'https://images.shiksha.com/mediadata/images/articles/1664461243phpY2xZ72.jpeg', // Replace with actual image URL
-                courseTitle: 'LAW',
-                instructorName: 'Mr. Ashutosh Kumar',
-                isCompleted: false,
-                screen: CourseModulesScreen(courseId: "jhasgdjhewgfue",), // Example completion status
-              ),
-              CourseCompletionCard(
-                imageUrl: 'https://iimtu.edu.in/blog/wp-content/uploads/2023/10/Chemistry-1.jpg', // Replace with actual image URL
-                courseTitle: 'LAW',
-                instructorName: 'Mr. Ashutosh Kumar',
-                isCompleted: false,
-                screen: StudentDashboard(), // Example completion status
-              ),
-              CourseCompletionCard(
-                imageUrl: 'https://images.shiksha.com/mediadata/images/articles/1664461243phpY2xZ72.jpeg', // Replace with actual image URL
-                courseTitle: 'LAW',
-                instructorName: 'Mr. Ashutosh Kumar',
-                isCompleted: false, // Example completion status,
-                screen: StudentDashboard(),
-              ),
-              CourseCompletionCard(
-                imageUrl: 'https://iimtu.edu.in/blog/wp-content/uploads/2023/10/Chemistry-1.jpg', // Replace with actual image URL
-                courseTitle: 'LAW',
-                instructorName: 'Mr. Ashutosh Kumar',
-                isCompleted: false,
-                screen: StudentDashboard(), // Example completion status
-              )
-
+                  imageUrl:
+                      'https://www.mtu.edu/cs/what/images/what-is-computer-science-banner1600.jpg', // Replace with actual image URL
+                  courseTitle: 'CSE',
+                  instructorName: 'Mr. Ashutosh Kumar',
+                  isCompleted: false,
+                  screen: CourseModulesScreen(
+                    courseId: "jhasgdjhewgfue",
+                  ), // Example completion status
+                ),
+                CourseCompletionCard(
+                  imageUrl:
+                      'https://foundr.com/wp-content/uploads/2023/03/Marketing-campaign.jpg', // Replace with actual image URL
+                  courseTitle: 'Marketing',
+                  instructorName: 'Mr. Alok ',
+                  isCompleted: false,
+                  screen: CourseModulesScreen(
+                    courseId: "jhasgdjhewgfue",
+                  ), // Example completion status
+                ),
+                CourseCompletionCard(
+                  imageUrl:
+                      'https://images.shiksha.com/mediadata/images/articles/1664461243phpY2xZ72.jpeg', // Replace with actual image URL
+                  courseTitle: 'LAW',
+                  instructorName: 'Mr. Ashutosh Kumar',
+                  isCompleted: false, // Example completion status,
+                  screen: StudentDashboard(),
+                ),
+                CourseCompletionCard(
+                  imageUrl:
+                      'https://iimtu.edu.in/blog/wp-content/uploads/2023/10/Chemistry-1.jpg', // Replace with actual image URL
+                  courseTitle: 'LAW',
+                  instructorName: 'Mr. Ashutosh Kumar',
+                  isCompleted: false,
+                  screen: StudentDashboard(), // Example completion status
+                )
               ],
             ),
-           
-
           ),
           SizedBox(height: 16),
-           _buildSectionTitle('Upcoming Exams'),
-           SizedBox(height: 15),
-           TestContainer(testName: 'National Exam', testDate: '19/08/04'),
+          _buildSectionTitle('Upcoming Exams'),
+          SizedBox(height: 15),
+          TestContainer(testName: 'National Exam', testDate: '19/08/04'),
           Spacer(),
-          FloatingActionButton(
-            onPressed: () {},
-            child: Icon(Icons.add),
-          ),
         ],
       ),
     );
   }
 
-  Widget _buildStatCard(BuildContext context, String count, String label, Color color, Widget targetScreen) {
+  Widget _buildStatCard(BuildContext context, String count, String label,
+      Color color, Widget targetScreen) {
     return Container(
       child: Expanded(
         child: GestureDetector(
@@ -164,7 +176,6 @@ class HomeTab extends StatelessWidget {
 
   Widget _buildSlidableCard() {
     return Slidable(
-     
       startActionPane: ActionPane(
         motion: const ScrollMotion(),
         dismissible: DismissiblePane(onDismissed: () {}),
@@ -221,14 +232,81 @@ void doNothing(BuildContext context) {}
 class CoursesTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text('Courses Tab'));
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Mentor Details'),
+        // leading: IconButton(onPressed: () {  },
+
+        // ),
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Lottie animation at the top
+              Center(
+                child: Lottie.asset(
+                  'images/hi.json', // Ensure you have the 'hi' Lottie file in the assets directory
+                  height: 150,
+                ),
+              ),
+              SizedBox(height: 20),
+              // Mentor details
+              Text(
+                'Mentor Details:',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 10),
+              Text(
+                'Name: John Doe',
+                style: TextStyle(fontSize: 18),
+              ),
+              SizedBox(height: 5),
+              Text(
+                'Position: Senior Software Engineer',
+                style: TextStyle(fontSize: 18),
+              ),
+              SizedBox(height: 5),
+              Text(
+                'Email: john.doe@example.com',
+                style: TextStyle(fontSize: 18),
+              ),
+              SizedBox(height: 20),
+              // Contact via Phone Card
+              Card(
+                child: ListTile(
+                  leading: Icon(Icons.phone, color: Colors.green),
+                  title: Text('Contact via Phone'),
+                  onTap: () {
+                    // Add phone contact functionality here
+                  },
+                ),
+              ),
+              SizedBox(height: 10),
+              // Video Call Card
+              Card(
+                child: ListTile(
+                  leading: Icon(Icons.video_call, color: Colors.blue),
+                  title: Text('Video Call'),
+                  onTap: () {
+                    // Add video call functionality here
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
 
 class CommunitiesTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text('Communities Tab'));
+    return Center(child: Text('Communities'));
   }
 }
 
@@ -260,19 +338,8 @@ class AppDrawer extends StatelessWidget {
               color: Colors.red,
             ),
           ),
-          _buildDrawerItem(Icons.star, 'My Favorites'),
-          _buildDrawerItem(Icons.chat, 'Live Chat'),
-          _buildDrawerItem(Icons.forum, 'Cross Talk'),
-          _buildDrawerItem(Icons.feedback, 'Feedback'),
-          _buildDrawerItem(Icons.dashboard, 'Consent Dashboard'),
-          _buildDrawerItem(Icons.privacy_tip, 'Privacy Notice'),
-          _buildDrawerItem(Icons.clear, 'Clear Cache'),
-          _buildDrawerItem(Icons.system_update, 'Version Upgrade'),
-          _buildDrawerItem(Icons.color_lens, 'Change Theme'),
-          _buildDrawerItem(Icons.format_paint, 'Change Template'),
-          _buildDrawerItem(Icons.language, 'Change Language'),
-          _buildDrawerItem(Icons.lock, 'Change Password'),
-          _buildDrawerItem(Icons.logout, 'Logout'),
+          _buildDrawerItem(Icons.feedback, 'Feedback', context),
+          _buildDrawerItem(Icons.logout, 'Logout', context),
           SwitchListTile(
             title: Text('Allow Notifications'),
             value: true,
@@ -283,12 +350,18 @@ class AppDrawer extends StatelessWidget {
     );
   }
 
-  Widget _buildDrawerItem(IconData icon, String title) {
+  Widget _buildDrawerItem(IconData icon, String title, BuildContext context) {
     return ListTile(
       leading: Icon(icon),
       title: Text(title),
       onTap: () {
-        // Handle menu item tap
+        if (title == 'Feedback')
+          MaterialPageRoute(builder: (context) => FeedbackForm());
+        else if (title == 'Logout')
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => LoginSignupPage()),
+          );
       },
     );
   }
@@ -351,10 +424,6 @@ class CommunitiesSubscribedScreen extends StatelessWidget {
     );
   }
 }
-
-
-
-
 
 class CourseCompletionCard extends StatelessWidget {
   final String imageUrl;
@@ -435,15 +504,13 @@ class CourseCompletionCard extends StatelessWidget {
   }
 }
 
-
-
-
 class AttendanceCard extends StatefulWidget {
   @override
   _AttendanceCardState createState() => _AttendanceCardState();
 }
 
-class _AttendanceCardState extends State<AttendanceCard> with SingleTickerProviderStateMixin {
+class _AttendanceCardState extends State<AttendanceCard>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
 
@@ -570,6 +637,7 @@ class _AttendanceCardState extends State<AttendanceCard> with SingleTickerProvid
     );
   }
 }
+
 class TestContainer extends StatelessWidget {
   final String testName;
   final String testDate;
@@ -583,11 +651,10 @@ class TestContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-
       child: InkWell(
         splashColor: Colors.black,
         child: Container(
-          width:320,
+          width: 320,
           height: 120,
           padding: EdgeInsets.all(8),
           margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
@@ -604,14 +671,14 @@ class TestContainer extends StatelessWidget {
             ],
           ),
           child: Row(
-
             children: [
-              Container(height:95,width: 95,child: Lottie.asset("images/exam.json")),
-
+              Container(
+                  height: 95,
+                  width: 95,
+                  child: Lottie.asset("images/exam.json")),
               Padding(
                 padding: const EdgeInsets.only(left: 30),
                 child: Column(
-                  
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
