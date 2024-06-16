@@ -1,4 +1,6 @@
 import 'package:eklavya/screens/StudentDashboard.dart';
+import 'package:eklavya/screens/feedbackForm.dart';
+import 'package:eklavya/screens/login.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatelessWidget {
@@ -36,18 +38,7 @@ class MyHomePage extends StatelessWidget {
                 color: Color.fromARGB(255, 203, 80, 252),
               ),
             ),
-            _buildDrawerItem(Icons.star, 'My Favorites'),
-            _buildDrawerItem(Icons.chat, 'Live Chat'),
-            _buildDrawerItem(Icons.forum, 'Cross Talk'),
             _buildDrawerItem(Icons.feedback, 'Feedback'),
-            _buildDrawerItem(Icons.dashboard, 'Consent Dashboard'),
-            _buildDrawerItem(Icons.privacy_tip, 'Privacy Notice'),
-            _buildDrawerItem(Icons.clear, 'Clear Cache'),
-            _buildDrawerItem(Icons.system_update, 'Version Upgrade'),
-            _buildDrawerItem(Icons.color_lens, 'Change Theme'),
-            _buildDrawerItem(Icons.format_paint, 'Change Template'),
-            _buildDrawerItem(Icons.language, 'Change Language'),
-            _buildDrawerItem(Icons.lock, 'Change Password'),
             _buildDrawerItem(Icons.logout, 'Logout'),
             SwitchListTile(
               title: Text('Allow Notifications'),
@@ -85,10 +76,14 @@ class MyHomePage extends StatelessWidget {
                 crossAxisSpacing: 16.0,
                 mainAxisSpacing: 16.0,
                 children: [
-                  _buildGridItem(context, Icons.person, 'My Courses', StudentDashboard()),
-                  _buildGridItem(context, Icons.school, 'Tests', StudentDashboard()),
-                  _buildGridItem(context, Icons.location_city, 'Scholarships Tracker', StudentDashboard()),
-                  _buildGridItem(context, Icons.category, 'Admissions ', StudentDashboard()),
+                  _buildGridItem(
+                      context, Icons.person, 'My Courses', StudentDashboard()),
+                  _buildGridItem(
+                      context, Icons.school, 'Tests', StudentDashboard()),
+                  _buildGridItem(context, Icons.location_city,
+                      'Scholarships Tracker', StudentDashboard()),
+                  _buildGridItem(context, Icons.category, 'Admissions ',
+                      StudentDashboard()),
                 ],
               ),
             ),
@@ -103,12 +98,16 @@ class MyHomePage extends StatelessWidget {
       leading: Icon(icon),
       title: Text(title),
       onTap: () {
-        // Handle menu item tap
+        if (title == 'Feedback')
+          MaterialPageRoute(builder: (context) => FeedbackForm());
+        else if (title == 'Logout')
+          MaterialPageRoute(builder: (context) => LoginSignupPage());
       },
     );
   }
 
-  Widget _buildGridItem(BuildContext context, IconData icon, String title, Widget screen) {
+  Widget _buildGridItem(
+      BuildContext context, IconData icon, String title, Widget screen) {
     return Card(
       elevation: 4,
       shape: RoundedRectangleBorder(

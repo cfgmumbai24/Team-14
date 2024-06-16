@@ -1,4 +1,6 @@
 import 'package:eklavya/screens/CoursesModules.dart';
+import 'package:eklavya/screens/feedbackForm.dart';
+import 'package:eklavya/screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -231,6 +233,9 @@ class CoursesTab extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Mentor Details'),
+        // leading: IconButton(onPressed: () {  },
+
+        // ),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -331,19 +336,8 @@ class AppDrawer extends StatelessWidget {
               color: Colors.red,
             ),
           ),
-          _buildDrawerItem(Icons.star, 'My Favorites'),
-          _buildDrawerItem(Icons.chat, 'Live Chat'),
-          _buildDrawerItem(Icons.forum, 'Cross Talk'),
-          _buildDrawerItem(Icons.feedback, 'Feedback'),
-          _buildDrawerItem(Icons.dashboard, 'Consent Dashboard'),
-          _buildDrawerItem(Icons.privacy_tip, 'Privacy Notice'),
-          _buildDrawerItem(Icons.clear, 'Clear Cache'),
-          _buildDrawerItem(Icons.system_update, 'Version Upgrade'),
-          _buildDrawerItem(Icons.color_lens, 'Change Theme'),
-          _buildDrawerItem(Icons.format_paint, 'Change Template'),
-          _buildDrawerItem(Icons.language, 'Change Language'),
-          _buildDrawerItem(Icons.lock, 'Change Password'),
-          _buildDrawerItem(Icons.logout, 'Logout'),
+          _buildDrawerItem(Icons.feedback, 'Feedback', context),
+          _buildDrawerItem(Icons.logout, 'Logout', context),
           SwitchListTile(
             title: Text('Allow Notifications'),
             value: true,
@@ -354,12 +348,18 @@ class AppDrawer extends StatelessWidget {
     );
   }
 
-  Widget _buildDrawerItem(IconData icon, String title) {
+  Widget _buildDrawerItem(IconData icon, String title, BuildContext context) {
     return ListTile(
       leading: Icon(icon),
       title: Text(title),
       onTap: () {
-        // Handle menu item tap
+        if (title == 'Feedback')
+          MaterialPageRoute(builder: (context) => FeedbackForm());
+        else if (title == 'Logout')
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => LoginSignupPage()),
+          );
       },
     );
   }
