@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:eklavya/constants/error_handling.dart';
 import 'package:eklavya/screens/StudentDashboard.dart';
+import 'package:eklavya/screens/admin_dashboard.dart';
+import 'package:eklavya/screens/dashboard_mentor.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -88,10 +90,22 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
         // Optionally, store user data in shared preferences
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setString('user', response.body);
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => StudentDashboard()),
-        );
+        if (selectedRole == 'Student')
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => StudentDashboard()),
+          );
+        else if (selectedRole == 'Mentor') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => DashboardScreen()),
+          );
+        } else {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AdminDashboard()),
+          );
+        }
       } else {
         Fluttertoast.showToast(msg: 'Signup Failed');
       }
@@ -112,9 +126,24 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
       final response = await http.post(url, headers: headers, body: body);
       if (response.statusCode == 200) {
         Fluttertoast.showToast(msg: 'Login Successful');
-        // Optionally, store user data in shared preferences
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setString('user', response.body);
+        if (selectedRole == 'Student')
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => StudentDashboard()),
+          );
+        else if (selectedRole == 'Mentor') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => DashboardScreen()),
+          );
+        } else {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AdminDashboard()),
+          );
+        }
       } else {
         Fluttertoast.showToast(msg: 'Login Failed');
       }
@@ -284,22 +313,22 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
                       return null;
                     },
                   ),
-                if (_auth == Auth.signup)
-                  DropdownButtonFormField<String>(
-                    decoration: InputDecoration(labelText: 'Role'),
-                    value: selectedRole,
-                    items: ['Student', 'Mentor', 'Admin'].map((String role) {
-                      return DropdownMenuItem<String>(
-                        value: role,
-                        child: Text(role),
-                      );
-                    }).toList(),
-                    onChanged: (newValue) {
-                      setState(() {
-                        selectedRole = newValue!;
-                      });
-                    },
-                  ),
+                // if (_auth == Auth.signup)
+                DropdownButtonFormField<String>(
+                  decoration: InputDecoration(labelText: 'Role'),
+                  value: selectedRole,
+                  items: ['Student', 'Mentor', 'Admin'].map((String role) {
+                    return DropdownMenuItem<String>(
+                      value: role,
+                      child: Text(role),
+                    );
+                  }).toList(),
+                  onChanged: (newValue) {
+                    setState(() {
+                      selectedRole = newValue!;
+                    });
+                  },
+                ),
                 if (_auth == Auth.signup) _buildRoleSpecificFields(),
                 SizedBox(height: 20),
                 ElevatedButton(
