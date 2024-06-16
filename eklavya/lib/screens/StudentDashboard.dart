@@ -69,8 +69,8 @@ class HomeTab extends StatelessWidget {
               children: [
                 CourseCompletionCard(
                   imageUrl:
-                      'https://images.shiksha.com/mediadata/images/articles/1664461243phpY2xZ72.jpeg', // Replace with actual image URL
-                  courseTitle: 'LAW',
+                      'https://www.mtu.edu/cs/what/images/what-is-computer-science-banner1600.jpg', // Replace with actual image URL
+                  courseTitle: 'CSE',
                   instructorName: 'Mr. Ashutosh Kumar',
                   isCompleted: false,
                   screen: CourseModulesScreen(
@@ -79,11 +79,13 @@ class HomeTab extends StatelessWidget {
                 ),
                 CourseCompletionCard(
                   imageUrl:
-                      'https://iimtu.edu.in/blog/wp-content/uploads/2023/10/Chemistry-1.jpg', // Replace with actual image URL
-                  courseTitle: 'LAW',
-                  instructorName: 'Mr. Ashutosh Kumar',
+                      'https://foundr.com/wp-content/uploads/2023/03/Marketing-campaign.jpg', // Replace with actual image URL
+                  courseTitle: 'Marketing',
+                  instructorName: 'Mr. Alok ',
                   isCompleted: false,
-                  screen: StudentDashboard(), // Example completion status
+                  screen: CourseModulesScreen(
+                    courseId: "jhasgdjhewgfue",
+                  ), // Example completion status
                 ),
                 CourseCompletionCard(
                   imageUrl:
